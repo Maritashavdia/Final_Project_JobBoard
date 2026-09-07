@@ -372,6 +372,36 @@ def job_detail(job_id):
     "/job/<int:job_id>/edit",
     methods=["GET", "POST"]
 )
+
+@app.route("/user/<string:name>")
+def user_jobs(name):
+    user = User.query.filter_by(
+        name=name
+    ).first_or_404()
+
+    jobs = Job.query.filter_by(
+        author=user
+    ).order_by(
+        Job.date_posted.desc()
+    ).all()
+
+    image_file = url_for(
+        "static",
+        filename=(
+            "profile_pics/"
+            + user.image_file
+        )
+    )
+
+    return render_template(
+        "user_jobs.html",
+        user=user,
+        jobs=jobs,
+        image_file=image_file,
+        title=f"{user.name}'s Jobs"
+    )
+
+
 @login_required
 def edit_job(job_id):
     job = db.get_or_404(Job, job_id)

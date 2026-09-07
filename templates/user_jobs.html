@@ -1,0 +1,119 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="container">
+    <div class="author-profile-card">
+        <img
+            src="{{ image_file }}"
+            alt="{{ user.name }} profile picture"
+            class="author-profile-image"
+        >
+
+        <div>
+            <span class="profile-label">
+                JobBoard author
+            </span>
+
+            <h1>{{ user.name }}</h1>
+
+            <p class="mb-0">
+                Published vacancies:
+                <strong>{{ jobs | length }}</strong>
+            </p>
+        </div>
+    </div>
+</section>
+
+<section class="jobs-section author-jobs-section">
+    <div class="container">
+        <div class="jobs-heading-row">
+            <div>
+                <h2>Jobs published by {{ user.name }}</h2>
+
+                <p>
+                    View the opportunities shared by this author.
+                </p>
+            </div>
+
+            <a
+                href="{{ url_for('index') }}"
+                class="btn btn-outline-purple"
+            >
+                Back to All Jobs
+            </a>
+        </div>
+
+        {% if jobs %}
+            <div class="row g-4">
+                {% for job in jobs %}
+                    <div class="col-md-6 col-xl-4">
+                        <article class="job-card">
+                            <div class="job-card-top">
+                                <div class="company-icon">
+                                    {{ job.company[0] | upper }}
+                                </div>
+
+                                <span class="category-badge">
+                                    {{ job.category }}
+                                </span>
+                            </div>
+
+                            <h3>{{ job.title }}</h3>
+
+                            <div class="job-company">
+                                {{ job.company }}
+                            </div>
+
+                            <div class="job-meta">
+                                <span class="meta-badge">
+                                    {{ job.location }}
+                                </span>
+
+                                <span class="meta-badge">
+                                    {{ job.salary }}
+                                </span>
+                            </div>
+
+                            <p class="job-description">
+                                {{ job.short_description }}
+                            </p>
+
+                            <div class="job-card-footer">
+                                <div class="job-author">
+                                    {{ job.date_posted.strftime("%d %b %Y") }}
+                                </div>
+
+                                <a
+                                    href="{{ url_for('job_detail', job_id=job.id) }}"
+                                    class="btn btn-outline-purple"
+                                >
+                                    Read More
+                                </a>
+                            </div>
+                        </article>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <div class="empty-state">
+                <div class="empty-illustration">
+                    <span>✦</span>
+                </div>
+
+                <h2>No jobs published</h2>
+
+                <p>
+                    This author has not published any jobs yet.
+                </p>
+
+                <a
+                    href="{{ url_for('index') }}"
+                    class="btn btn-purple"
+                >
+                    Explore Jobs
+                </a>
+            </div>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}

@@ -158,7 +158,13 @@
 
                             <div class="job-card-footer">
                                 <div class="job-author">
-                                    By {{ job.author.name }}
+                                    By
+                                    <a
+                                        href="{{ url_for('user_jobs', name=job.author.name) }}"
+                                        class="author-link"
+                                    >
+                                        {{ job.author.name }}
+                                    </a>
                                     <br>
                                     {{ job.date_posted.strftime("%d %b %Y") }}
                                 </div>

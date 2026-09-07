@@ -43,7 +43,14 @@
 
             <div class="detail-item">
                 <span class="detail-label">Published by</span>
-                <strong>{{ job.author.name }}</strong>
+                <strong>
+                    <a
+                         href="{{ url_for('user_jobs', name=job.author.name) }}"
+                         class="author-link"
+                    >
+                        {{ job.author.name }}
+                    </a>
+                </strong>
             </div>
 
             <div class="detail-item">

@@ -1457,3 +1457,48 @@ textarea.form-control {
     font-weight: 700;
     transform: rotate(-7deg);
 }
+
+.author-link {
+    color: var(--purple);
+    font-weight: 900;
+}
+
+.author-link:hover {
+    color: var(--coral);
+    text-decoration: underline;
+}
+
+.author-profile-card {
+    margin: 50px auto 10px;
+    padding: 30px;
+    background-color: var(--white);
+    border: 1px solid var(--light-border);
+    border-radius: var(--radius-large);
+    box-shadow: var(--shadow-small);
+    display: flex;
+    align-items: center;
+    gap: 22px;
+}
+
+.author-profile-image {
+    width: 105px;
+    height: 105px;
+    object-fit: cover;
+    border: 5px solid var(--purple-light);
+    border-radius: 50%;
+}
+
+.author-profile-card h1 {
+    margin-bottom: 6px;
+}
+
+.author-jobs-section {
+    padding-top: 45px;
+}
+
+@media (max-width: 575.98px) {
+    .author-profile-card {
+        text-align: center;
+        flex-direction: column;
+    }
+}
