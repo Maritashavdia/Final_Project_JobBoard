@@ -1,6 +1,6 @@
 :root {
     --dark-plum: #24113D;
-    --purple: #7657E8;
+    --purple: #2F9E73;
     --purple-dark: #6042D0;
     --purple-light: #EEE9FF;
     --coral: #FF6268;
@@ -120,7 +120,7 @@ p {
     justify-content: center;
     font-size: 1.3rem;
     font-weight: 900;
-    box-shadow: 0 7px 18px rgba(118, 87, 232, 0.25);
+    box-shadow: 0 7px 18px rgba(47, 158, 115, 0.25);
 }
 
 .brand-icon-small {
@@ -178,7 +178,7 @@ p {
     background-color: var(--purple);
     border-color: var(--purple);
     color: var(--white);
-    box-shadow: 0 8px 18px rgba(118, 87, 232, 0.20);
+    box-shadow: 0 8px 18px rgba(47, 158, 115, 0.20);
 }
 
 .btn-purple:hover,
@@ -346,7 +346,7 @@ textarea.form-control {
     color: var(--dark-plum);
     background-color: var(--white);
     border-color: var(--purple);
-    box-shadow: 0 0 0 4px rgba(118, 87, 232, 0.13);
+    box-shadow: 0 0 0 4px rgba(47, 158, 115, 0.13);
 }
 
 .form-control::placeholder {
@@ -364,7 +364,7 @@ textarea.form-control {
 
 .form-check-input:focus {
     border-color: var(--purple);
-    box-shadow: 0 0 0 4px rgba(118, 87, 232, 0.13);
+    box-shadow: 0 0 0 4px rgba(47, 158, 115, 0.13);
 }
 
 .invalid-feedback {
@@ -1501,4 +1501,66 @@ textarea.form-control {
         text-align: center;
         flex-direction: column;
     }
+}
+
+.navbar-brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0 !important;
+    text-decoration: none;
+    font-size: 1.75rem;
+    font-weight: 900;
+    letter-spacing: -0.8px;
+}
+
+.brand-job {
+    color: #24113D;
+}
+
+.brand-board {
+    color: #2F9E73;
+}
+
+.navbar-brand:hover .brand-board {
+    color: #278461;
+}
+
+
+.footer-brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0 !important;
+    font-size: 1.75rem;
+    font-weight: 900;
+    letter-spacing: -0.8px;
+    text-decoration: none;
+}
+
+.footer-brand-job {
+    color: #FFFFFF;
+}
+
+.footer-brand-board {
+    color: #57C99A;
+}
+
+.footer-brand:hover .footer-brand-job {
+    color: #FFFFFF;
+}
+
+.footer-brand:hover .footer-brand-board {
+    color: #6ED8AB;
+}
+
+.company-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #2F9E73;
+    color: #FFFFFF;
+}
+
+.company-icon-svg {
+    width: 29px;
+    height: 29px;
 }
