@@ -1,0 +1,158 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="page-header">
+    <div class="container">
+        <span class="hero-label">
+            About our community
+        </span>
+
+        <h1>Helping people find their next step.</h1>
+
+        <p>
+            JobBoard is a friendly place where people can discover
+            opportunities and share vacancies with the community.
+        </p>
+    </div>
+</section>
+
+<section class="pb-5">
+    <div class="container">
+        <div class="about-intro-card">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-6">
+                    <h2>Opportunities should feel accessible</h2>
+
+                    <p>
+                        We created JobBoard to make searching and
+                        publishing vacancies simple, clear and welcoming.
+                    </p>
+
+                    <p>
+                        Visitors can explore available jobs, while
+                        registered users can publish and manage their
+                        own vacancies.
+                    </p>
+
+                    {% if current_user.is_authenticated %}
+                        <a
+                            href="{{ url_for('create_job') }}"
+                            class="btn btn-purple"
+                        >
+                            Share an Opportunity
+                        </a>
+                    {% else %}
+                        <a
+                            href="{{ url_for('register') }}"
+                            class="btn btn-purple"
+                        >
+                            Join JobBoard
+                        </a>
+                    {% endif %}
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="about-illustration">
+                        <div class="about-shape about-shape-yellow"></div>
+                        <div class="about-shape about-shape-mint"></div>
+                        <div class="about-shape about-shape-coral"></div>
+
+                        <div class="about-people">
+                            <div class="about-person about-person-one">
+                                <span class="about-head"></span>
+                                <span class="about-body"></span>
+                            </div>
+
+                            <div class="about-person about-person-two">
+                                <span class="about-head"></span>
+                                <span class="about-body"></span>
+                            </div>
+
+                            <div class="about-person about-person-three">
+                                <span class="about-head"></span>
+                                <span class="about-body"></span>
+                            </div>
+                        </div>
+
+                        <span class="about-note">
+                            together, we grow
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section-padding">
+    <div class="container">
+        <div class="text-center">
+            <h2 class="section-heading">
+                What you can do on JobBoard
+            </h2>
+
+            <p class="section-subheading">
+                Everything is designed to remain simple,
+                useful and easy to understand.
+            </p>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="about-feature">
+                    <div class="feature-icon feature-purple">
+                        01
+                    </div>
+
+                    <h3>Explore jobs</h3>
+
+                    <p class="mb-0">
+                        Browse recently published vacancies and open
+                        each listing to read its full description.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="about-feature">
+                    <div class="feature-icon feature-coral">
+                        02
+                    </div>
+
+                    <h3>Share opportunities</h3>
+
+                    <p class="mb-0">
+                        Registered users can publish vacancies and
+                        help other people discover new opportunities.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="about-feature">
+                    <div class="feature-icon feature-mint">
+                        03
+                    </div>
+
+                    <h3>Manage your posts</h3>
+
+                    <p class="mb-0">
+                        Authors can safely edit or delete only the
+                        vacancies that they have published.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="quote-card">
+            <p class="quote-text">
+                “{{ quote.quote }}”
+            </p>
+
+            <p class="quote-author">
+                — {{ quote.author }}
+            </p>
+        </div>
+    </div>
+</section>
+{% endblock %}

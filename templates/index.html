@@ -1,0 +1,209 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="hero-section">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-7">
+                <div class="hero-content">
+                    <div class="hero-label">
+                        <span>●</span>
+                        New opportunities are waiting
+                    </div>
+
+                    <h1 class="hero-title">
+                        Find a job that
+                        <span class="highlight">feels right.</span>
+                    </h1>
+
+                    <p class="hero-description">
+                        Explore meaningful opportunities, connect with
+                        great companies and take the next step in your
+                        career with JobBoard.
+                    </p>
+
+                    <div class="hero-actions">
+                        <a
+                            href="#available-jobs"
+                            class="btn btn-purple"
+                        >
+                            Explore Jobs
+                        </a>
+
+                        {% if current_user.is_authenticated %}
+                            <a
+                                href="{{ url_for('create_job') }}"
+                                class="btn btn-outline-purple"
+                            >
+                                Add a Job
+                            </a>
+                        {% else %}
+                            <a
+                                href="{{ url_for('register') }}"
+                                class="btn btn-outline-purple"
+                            >
+                                Join JobBoard
+                            </a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-5">
+                <div class="hero-visual">
+                    <div class="illustration-card">
+                        <div class="illustration-circle circle-yellow"></div>
+                        <div class="illustration-circle circle-mint"></div>
+                        <div class="illustration-circle circle-coral"></div>
+
+                        <div class="illustration-window">
+                            <div class="window-dots">
+                                <span class="window-dot dot-coral"></span>
+                                <span class="window-dot dot-yellow"></span>
+                                <span class="window-dot dot-mint"></span>
+                            </div>
+
+                            <div class="illustration-line short"></div>
+                            <div class="illustration-line"></div>
+                            <div class="illustration-line medium"></div>
+                            <div class="illustration-line coral"></div>
+
+                            <div class="illustration-people">
+                                <div class="mini-person person-one">
+                                    <span class="mini-head"></span>
+                                    <span class="mini-body"></span>
+                                </div>
+
+                                <div class="mini-person person-two">
+                                    <span class="mini-head"></span>
+                                    <span class="mini-body"></span>
+                                </div>
+
+                                <div class="mini-person person-three">
+                                    <span class="mini-head"></span>
+                                    <span class="mini-body"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <span class="decorative-note">
+                            you’ve got this!
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section
+    class="jobs-section"
+    id="available-jobs"
+>
+    <div class="container">
+        <div class="jobs-heading-row">
+            <div>
+                <h2>Latest opportunities</h2>
+
+                <p>
+                    Discover recently published vacancies
+                    and find your next role.
+                </p>
+            </div>
+
+            {% if current_user.is_authenticated %}
+                <a
+                    href="{{ url_for('create_job') }}"
+                    class="btn btn-coral"
+                >
+                    + Add Job
+                </a>
+            {% endif %}
+        </div>
+
+        {% if jobs %}
+            <div class="row g-4">
+                {% for job in jobs %}
+                    <div class="col-md-6 col-xl-4">
+                        <article class="job-card">
+                            <div class="job-card-top">
+                                <div class="company-icon">
+                                    {{ job.company[0] | upper }}
+                                </div>
+
+                                <span class="category-badge">
+                                    {{ job.category }}
+                                </span>
+                            </div>
+
+                            <h3>{{ job.title }}</h3>
+
+                            <div class="job-company">
+                                {{ job.company }}
+                            </div>
+
+                            <div class="job-meta">
+                                <span class="meta-badge">
+                                    {{ job.location }}
+                                </span>
+
+                                <span class="meta-badge">
+                                    {{ job.salary }}
+                                </span>
+                            </div>
+
+                            <p class="job-description">
+                                {{ job.short_description }}
+                            </p>
+
+                            <div class="job-card-footer">
+                                <div class="job-author">
+                                    By {{ job.author.name }}
+                                    <br>
+                                    {{ job.date_posted.strftime("%d %b %Y") }}
+                                </div>
+
+                                <a
+                                    href="{{ url_for('job_detail', job_id=job.id) }}"
+                                    class="btn btn-outline-purple"
+                                >
+                                    Read More
+                                </a>
+                            </div>
+                        </article>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <div class="empty-state">
+                <div class="empty-illustration">
+                    <span>✦</span>
+                </div>
+
+                <h2>No jobs yet</h2>
+
+                <p>
+                    There are no published vacancies at the moment.
+                    Be the first person to share an opportunity.
+                </p>
+
+                {% if current_user.is_authenticated %}
+                    <a
+                        href="{{ url_for('create_job') }}"
+                        class="btn btn-purple"
+                    >
+                        Add the First Job
+                    </a>
+                {% else %}
+                    <a
+                        href="{{ url_for('login') }}"
+                        class="btn btn-purple"
+                    >
+                        Log In to Add a Job
+                    </a>
+                {% endif %}
+            </div>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}

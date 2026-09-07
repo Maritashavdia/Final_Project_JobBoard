@@ -1,0 +1,145 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="container">
+    <article class="job-details-card">
+        <a
+            href="{{ url_for('index') }}"
+            class="back-link"
+        >
+            ← Back to all jobs
+        </a>
+
+        <div class="job-details-heading">
+            <div class="company-icon company-icon-large">
+                {{ job.company[0] | upper }}
+            </div>
+
+            <div>
+                <span class="category-badge">
+                    {{ job.category }}
+                </span>
+
+                <h1 class="job-details-title">
+                    {{ job.title }}
+                </h1>
+
+                <p class="job-details-company">
+                    {{ job.company }}
+                </p>
+            </div>
+        </div>
+
+        <div class="job-detail-meta">
+            <div class="detail-item">
+                <span class="detail-label">Location</span>
+                <strong>{{ job.location }}</strong>
+            </div>
+
+            <div class="detail-item">
+                <span class="detail-label">Salary</span>
+                <strong>{{ job.salary }}</strong>
+            </div>
+
+            <div class="detail-item">
+                <span class="detail-label">Published by</span>
+                <strong>{{ job.author.name }}</strong>
+            </div>
+
+            <div class="detail-item">
+                <span class="detail-label">Date posted</span>
+                <strong>
+                    {{ job.date_posted.strftime("%d %B %Y") }}
+                </strong>
+            </div>
+        </div>
+
+        <div class="job-details-description">
+            <h2>About this opportunity</h2>
+
+            <p>{{ job.full_description }}</p>
+        </div>
+
+        {% if current_user.is_authenticated
+              and job.author == current_user %}
+            <div class="job-actions">
+                <a
+                    href="{{ url_for('edit_job', job_id=job.id) }}"
+                    class="btn btn-purple"
+                >
+                    Edit Job
+                </a>
+
+                <button
+                    type="button"
+                    class="btn btn-outline-coral"
+                    data-bs-toggle="modal"
+                    data-bs-target="#deleteJobModal"
+                >
+                    Delete Job
+                </button>
+            </div>
+        {% endif %}
+    </article>
+</section>
+
+{% if current_user.is_authenticated
+      and job.author == current_user %}
+    <div
+        class="modal fade"
+        id="deleteJobModal"
+        tabindex="-1"
+        aria-labelledby="deleteJobModalLabel"
+        aria-hidden="true"
+    >
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2
+                        class="modal-title fs-5"
+                        id="deleteJobModalLabel"
+                    >
+                        Delete this job?
+                    </h2>
+
+                    <button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                    ></button>
+                </div>
+
+                <div class="modal-body">
+                    <p class="mb-0">
+                        Are you sure you want to delete
+                        <strong>{{ job.title }}</strong>?
+                        This action cannot be undone.
+                    </p>
+                </div>
+
+                <div class="modal-footer">
+                    <button
+                        type="button"
+                        class="btn btn-outline-purple"
+                        data-bs-dismiss="modal"
+                    >
+                        Cancel
+                    </button>
+
+                    <form
+                        method="POST"
+                        action="{{ url_for('delete_job', job_id=job.id) }}"
+                    >
+                        {{ delete_form.hidden_tag() }}
+
+                        {{ delete_form.submit(
+                            class="btn btn-coral"
+                        ) }}
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endif %}
+{% endblock %}

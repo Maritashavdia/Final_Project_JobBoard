@@ -1,0 +1,200 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="container">
+    <div class="form-card job-form-card">
+        <div class="form-icon form-icon-yellow">
+            +
+        </div>
+
+        <h1 class="form-heading">
+            {{ page_heading }}
+        </h1>
+
+        <p class="form-intro">
+            Add the required information clearly so job seekers
+            can easily understand the opportunity.
+        </p>
+
+        <form method="POST" novalidate>
+            {{ form.hidden_tag() }}
+
+            <div class="row g-4">
+                <div class="col-12">
+                    {{ form.title.label(class="form-label") }}
+
+                    {% if form.title.errors %}
+                        {{ form.title(
+                            class="form-control is-invalid",
+                            placeholder="For example: Junior Python Developer"
+                        ) }}
+
+                        <div class="invalid-feedback">
+                            {% for error in form.title.errors %}
+                                <div>{{ error }}</div>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.title(
+                            class="form-control",
+                            placeholder="For example: Junior Python Developer"
+                        ) }}
+                    {% endif %}
+                </div>
+
+                <div class="col-md-6">
+                    {{ form.company.label(class="form-label") }}
+
+                    {% if form.company.errors %}
+                        {{ form.company(
+                            class="form-control is-invalid",
+                            placeholder="Company name"
+                        ) }}
+
+                        <div class="invalid-feedback">
+                            {% for error in form.company.errors %}
+                                <div>{{ error }}</div>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.company(
+                            class="form-control",
+                            placeholder="Company name"
+                        ) }}
+                    {% endif %}
+                </div>
+
+                <div class="col-md-6">
+                    {{ form.location.label(class="form-label") }}
+
+                    {% if form.location.errors %}
+                        {{ form.location(
+                            class="form-control is-invalid",
+                            placeholder="For example: Tbilisi or Remote"
+                        ) }}
+
+                        <div class="invalid-feedback">
+                            {% for error in form.location.errors %}
+                                <div>{{ error }}</div>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.location(
+                            class="form-control",
+                            placeholder="For example: Tbilisi or Remote"
+                        ) }}
+                    {% endif %}
+                </div>
+
+                <div class="col-md-6">
+                    {{ form.salary.label(class="form-label") }}
+
+                    {% if form.salary.errors %}
+                        {{ form.salary(
+                            class="form-control is-invalid",
+                            placeholder="For example: 2,000–2,500 GEL"
+                        ) }}
+
+                        <div class="invalid-feedback">
+                            {% for error in form.salary.errors %}
+                                <div>{{ error }}</div>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.salary(
+                            class="form-control",
+                            placeholder="For example: 2,000–2,500 GEL"
+                        ) }}
+                    {% endif %}
+                </div>
+
+                <div class="col-md-6">
+                    {{ form.category.label(class="form-label") }}
+
+                    {% if form.category.errors %}
+                        {{ form.category(
+                            class="form-select is-invalid"
+                        ) }}
+
+                        <div class="invalid-feedback">
+                            {% for error in form.category.errors %}
+                                <div>{{ error }}</div>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.category(class="form-select") }}
+                    {% endif %}
+                </div>
+
+                <div class="col-12">
+                    {{ form.short_description.label(class="form-label") }}
+
+                    {% if form.short_description.errors %}
+                        {{ form.short_description(
+                            class="form-control is-invalid",
+                            rows="3",
+                            placeholder="Write a short summary of the vacancy"
+                        ) }}
+
+                        <div class="invalid-feedback">
+                            {% for error in form.short_description.errors %}
+                                <div>{{ error }}</div>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.short_description(
+                            class="form-control",
+                            rows="3",
+                            placeholder="Write a short summary of the vacancy"
+                        ) }}
+                    {% endif %}
+
+                    <div class="form-help">
+                        Maximum 250 characters.
+                    </div>
+                </div>
+
+                <div class="col-12">
+                    {{ form.full_description.label(class="form-label") }}
+
+                    {% if form.full_description.errors %}
+                        {{ form.full_description(
+                            class="form-control full-description-field is-invalid",
+                            rows="8",
+                            placeholder="Describe the role, responsibilities and requirements"
+                        ) }}
+
+                        <div class="invalid-feedback">
+                            {% for error in form.full_description.errors %}
+                                <div>{{ error }}</div>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.full_description(
+                            class="form-control full-description-field",
+                            rows="8",
+                            placeholder="Describe the role, responsibilities and requirements"
+                        ) }}
+                    {% endif %}
+                </div>
+
+                <div class="col-12">
+                    <div class="job-form-actions">
+                        {{ form.submit(
+                            class="btn btn-purple",
+                            value=submit_text
+                        ) }}
+
+                        <a
+                            href="{{ url_for('index') }}"
+                            class="btn btn-outline-purple"
+                        >
+                            Cancel
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
+{% endblock %}
