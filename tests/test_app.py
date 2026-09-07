@@ -74,7 +74,7 @@ def test_user_can_log_in(client):
     assert b"Log Out" in response.data
 
 
-def test_user_cannot_edit_another_users_job(client):
+def test_user_cannot_modify_another_users_job(client):
     owner = create_user(
         name="Job Owner",
         email="owner@example.com"
@@ -104,6 +104,8 @@ def test_user_cannot_edit_another_users_job(client):
     db.session.add(job)
     db.session.commit()
 
+    job_id = job.id
+
     login_response = client.post(
         "/login",
         data={
@@ -116,8 +118,21 @@ def test_user_cannot_edit_another_users_job(client):
 
     assert login_response.status_code == 200
 
-    response = client.get(
-        f"/job/{job.id}/edit"
+    edit_response = client.get(
+        f"/job/{job_id}/edit"
     )
 
-    assert response.status_code == 403
+    assert edit_response.status_code == 403
+
+    delete_response = client.post(
+        f"/job/{job_id}/delete"
+    )
+
+    assert delete_response.status_code == 403
+
+    existing_job = db.session.get(
+        Job,
+        job_id
+    )
+
+    assert existing_job is not None
