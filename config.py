@@ -1,8 +1,30 @@
 import os
+
 from dotenv import load_dotenv
 
 
 load_dotenv()
+
+
+database_url = os.environ.get(
+    "DATABASE_URL",
+    "sqlite:///jobboard.db"
+)
+
+
+if database_url.startswith("postgres://"):
+    database_url = database_url.replace(
+        "postgres://",
+        "postgresql+psycopg://",
+        1
+    )
+
+elif database_url.startswith("postgresql://"):
+    database_url = database_url.replace(
+        "postgresql://",
+        "postgresql+psycopg://",
+        1
+    )
 
 
 class Config:
@@ -11,10 +33,7 @@ class Config:
         "jobboard-development-secret-key"
     )
 
-    SQLALCHEMY_DATABASE_URI = os.environ.get(
-        "DATABASE_URL",
-        "sqlite:///jobboard.db"
-    )
+    SQLALCHEMY_DATABASE_URI = database_url
 
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 

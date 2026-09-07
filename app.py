@@ -62,6 +62,7 @@ def load_user(user_id):
 
 def save_picture(form_picture):
     random_name = secrets.token_hex(8)
+
     file_extension = os.path.splitext(
         form_picture.filename
     )[1].lower()
@@ -265,14 +266,9 @@ def profile():
                 form.picture.data
             )
 
-            current_user.image_file = (
-                picture_filename
-            )
+            current_user.image_file = picture_filename
 
-        current_user.name = (
-            form.name.data.strip()
-        )
-
+        current_user.name = form.name.data.strip()
         current_user.email = (
             form.email.data.strip().lower()
         )
@@ -344,7 +340,12 @@ def create_job():
             "success"
         )
 
-        return redirect(url_for("job_detail", job_id=job.id))
+        return redirect(
+            url_for(
+                "job_detail",
+                job_id=job.id
+            )
+        )
 
     return render_template(
         "create_job.html",
@@ -367,11 +368,6 @@ def job_detail(job_id):
         title=job.title
     )
 
-
-@app.route(
-    "/job/<int:job_id>/edit",
-    methods=["GET", "POST"]
-)
 
 @app.route("/user/<string:name>")
 def user_jobs(name):
@@ -402,6 +398,10 @@ def user_jobs(name):
     )
 
 
+@app.route(
+    "/job/<int:job_id>/edit",
+    methods=["GET", "POST"]
+)
 @login_required
 def edit_job(job_id):
     job = db.get_or_404(Job, job_id)
@@ -417,9 +417,11 @@ def edit_job(job_id):
         job.location = form.location.data.strip()
         job.salary = form.salary.data.strip()
         job.category = form.category.data
+
         job.short_description = (
             form.short_description.data.strip()
         )
+
         job.full_description = (
             form.full_description.data.strip()
         )
@@ -450,9 +452,11 @@ def edit_job(job_id):
         form.location.data = job.location
         form.salary.data = job.salary
         form.category.data = job.category
+
         form.short_description.data = (
             job.short_description
         )
+
         form.full_description.data = (
             job.full_description
         )
@@ -545,32 +549,3 @@ with app.app_context():
 
 if __name__ == "__main__":
     app.run(debug=True)
-
-@app.errorhandler(404)
-def page_not_found(error):
-    return render_template(
-        "404.html",
-        title="Page Not Found"
-    ), 404
-
-
-@app.errorhandler(500)
-def internal_server_error(error):
-    db.session.rollback()
-
-    return render_template(
-        "500.html",
-        title="Server Error"
-    ), 500
-
-
-with app.app_context():
-    db.create_all()
-
-
-if __name__ == "__main__":
-    app.run(debug=True)
-
-
-
-
