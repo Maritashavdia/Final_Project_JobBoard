@@ -1564,3 +1564,90 @@ textarea.form-control {
     width: 29px;
     height: 29px;
 }
+
+.job-filter-card {
+    margin: 1.75rem 0 2rem;
+    padding: 1.25rem;
+    background: #FFFFFF;
+    border: 1px solid #EAE4EF;
+    border-radius: 20px;
+    box-shadow: 0 10px 28px rgba(36, 17, 61, 0.06);
+}
+
+.job-filter-form {
+    display: flex;
+    align-items: flex-end;
+    gap: 1rem;
+}
+
+.filter-field {
+    flex: 1;
+}
+
+.filter-field label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #24113D;
+    font-weight: 800;
+}
+
+.filter-field .form-select {
+    min-height: 52px;
+    padding-left: 1rem;
+    color: #24113D;
+    background-color: #FFF9F1;
+    border: 1px solid #EAE4EF;
+    border-radius: 14px;
+}
+
+.filter-field .form-select:focus {
+    border-color: #2F9E73;
+    box-shadow: 0 0 0 0.25rem rgba(47, 158, 115, 0.15);
+}
+
+.filter-button {
+    min-height: 52px;
+    padding: 0.75rem 1.5rem;
+    color: #FFFFFF;
+    background-color: #2F9E73;
+    border: 2px solid #2F9E73;
+    border-radius: 14px;
+    font-weight: 800;
+}
+
+.filter-button:hover,
+.filter-button:focus {
+    color: #FFFFFF;
+    background-color: #278461;
+    border-color: #278461;
+}
+
+.clear-filter-link {
+    min-height: 52px;
+    display: inline-flex;
+    align-items: center;
+    color: #2F9E73;
+    font-weight: 800;
+    text-decoration: none;
+}
+
+.clear-filter-link:hover {
+    color: #278461;
+    text-decoration: underline;
+}
+
+@media (max-width: 767px) {
+    .job-filter-form {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .filter-button {
+        width: 100%;
+    }
+
+    .clear-filter-link {
+        min-height: auto;
+        justify-content: center;
+    }
+}
