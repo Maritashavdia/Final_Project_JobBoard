@@ -121,13 +121,67 @@
             {% endif %}
         </div>
 
+        <div class="job-filter-card">
+            <form
+                method="GET"
+                action="{{ url_for('index') }}"
+                class="job-filter-form"
+            >
+                <div class="filter-field">
+                    <label for="category">
+                        Filter by category
+                    </label>
+
+                    <select
+                        id="category"
+                        name="category"
+                        class="form-select"
+                    >
+                        <option value="">
+                            All categories
+                        </option>
+
+                        {% for category in categories %}
+                            <option
+                                value="{{ category }}"
+                                {% if selected_category == category %}
+                                    selected
+                                {% endif %}
+                            >
+                                {{ category }}
+                            </option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <button
+                    type="submit"
+                    class="btn filter-button"
+                >
+                    Apply Filter
+                </button>
+
+                {% if selected_category %}
+                    <a
+                        href="{{ url_for('index') }}#available-jobs"
+                        class="clear-filter-link"
+                    >
+                        Clear Filter
+                    </a>
+                {% endif %}
+            </form>
+        </div>
+
         {% if jobs %}
             <div class="row g-4">
                 {% for job in jobs %}
                     <div class="col-md-6 col-xl-4">
                         <article class="job-card">
                             <div class="job-card-top">
-                                <div class="company-icon" aria-hidden="true">
+                                <div
+                                    class="company-icon"
+                                    aria-hidden="true"
+                                >
                                     <svg
                                         class="company-icon-svg"
                                         xmlns="http://www.w3.org/2000/svg"
@@ -210,27 +264,43 @@
                     <span>✦</span>
                 </div>
 
-                <h2>No jobs yet</h2>
+                {% if selected_category %}
+                    <h2>No matching jobs</h2>
 
-                <p>
-                    There are no published vacancies at the moment.
-                    Be the first person to share an opportunity.
-                </p>
+                    <p>
+                        There are currently no vacancies in the
+                        {{ selected_category }} category.
+                    </p>
 
-                {% if current_user.is_authenticated %}
                     <a
-                        href="{{ url_for('create_job') }}"
+                        href="{{ url_for('index') }}#available-jobs"
                         class="btn btn-purple"
                     >
-                        Add the First Job
+                        View All Jobs
                     </a>
                 {% else %}
-                    <a
-                        href="{{ url_for('login') }}"
-                        class="btn btn-purple"
-                    >
-                        Log In to Add a Job
-                    </a>
+                    <h2>No jobs yet</h2>
+
+                    <p>
+                        There are no published vacancies at the moment.
+                        Be the first person to share an opportunity.
+                    </p>
+
+                    {% if current_user.is_authenticated %}
+                        <a
+                            href="{{ url_for('create_job') }}"
+                            class="btn btn-purple"
+                        >
+                            Add the First Job
+                        </a>
+                    {% else %}
+                        <a
+                            href="{{ url_for('login') }}"
+                            class="btn btn-purple"
+                        >
+                            Log In to Add a Job
+                        </a>
+                    {% endif %}
                 {% endif %}
             </div>
         {% endif %}

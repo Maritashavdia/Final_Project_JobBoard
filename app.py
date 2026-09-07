@@ -124,13 +124,38 @@ def get_external_quote():
 @app.route("/")
 @app.route("/home")
 def index():
-    jobs = Job.query.order_by(
+    selected_category = request.args.get(
+        "category",
+        ""
+    ).strip()
+
+    jobs_query = Job.query
+
+    if selected_category:
+        jobs_query = jobs_query.filter_by(
+            category=selected_category
+        )
+
+    jobs = jobs_query.order_by(
         Job.date_posted.desc()
     ).all()
+
+    categories = [
+        category
+        for category, in (
+            db.session.query(Job.category)
+            .distinct()
+            .order_by(Job.category)
+            .all()
+        )
+        if category
+    ]
 
     return render_template(
         "index.html",
         jobs=jobs,
+        categories=categories,
+        selected_category=selected_category,
         title="Jobs"
     )
 
