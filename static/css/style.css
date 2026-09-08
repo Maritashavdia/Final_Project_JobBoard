@@ -1575,11 +1575,11 @@ textarea.form-control {
 }
 
 .error-fall-illustration {
-    width: min(100%, 420px);
-    margin: 0 auto 28px;
+    width: min(100%, 360px);
+    margin: 0 auto 24px;
 }
 
-.error-fall-illustration svg {
+.error-fall-illustration img {
     display: block;
     width: 100%;
     height: auto;

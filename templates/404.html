@@ -3,88 +3,11 @@
 {% block content %}
 <section class="container">
     <div class="error-state">
-        <div
-            class="error-fall-illustration"
-            aria-hidden="true"
-        >
-            <svg
-                viewBox="0 0 420 300"
-                xmlns="http://www.w3.org/2000/svg"
+        <div class="error-fall-illustration">
+            <img
+                src="{{ url_for('static', filename='images/falling-person.png') }}"
+                alt="Person falling into a hole"
             >
-                <ellipse
-                    cx="210"
-                    cy="254"
-                    rx="105"
-                    ry="24"
-                    fill="#24113D"
-                />
-
-                <path
-                    d="M194 247
-                       C176 211 170 169 183 126
-                       L205 137
-                       C197 172 205 208 224 247Z"
-                    fill="#FF9F43"
-                />
-
-                <path
-                    d="M200 139
-                       C178 123 158 105 150 82
-                       L169 72
-                       C181 91 198 104 217 113Z"
-                    fill="#FF9F43"
-                />
-
-                <path
-                    d="M218 244
-                       C235 216 263 199 298 194
-                       L302 217
-                       C278 222 259 233 246 251Z"
-                    fill="#FF9F43"
-                />
-
-                <path
-                    d="M187 189
-                       C160 178 139 158 127 133
-                       L147 122
-                       C160 142 175 154 198 162Z"
-                    fill="#FF9F43"
-                />
-
-                <path
-                    d="M204 137
-                       C218 105 239 81 267 65
-                       L280 84
-                       C257 101 244 120 236 147Z"
-                    fill="#FF9F43"
-                />
-
-                <circle
-                    cx="158"
-                    cy="69"
-                    r="27"
-                    fill="#FF8E86"
-                />
-
-                <path
-                    d="M158 50V88
-                       M139 69H177
-                       M145 56L171 82
-                       M171 56L145 82"
-                    stroke="#E94F56"
-                    stroke-width="5"
-                    stroke-linecap="round"
-                />
-
-                <path
-                    d="M115 210L91 198
-                       M112 224L83 224
-                       M119 237L94 250"
-                    stroke="#57C99A"
-                    stroke-width="6"
-                    stroke-linecap="round"
-                />
-            </svg>
         </div>
 
         <div class="error-code">404</div>
