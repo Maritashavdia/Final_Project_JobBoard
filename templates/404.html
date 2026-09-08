@@ -6,17 +6,22 @@
         <div class="error-fall-illustration">
             <img
                 src="{{ url_for('static', filename='images/falling-person.png') }}"
-                alt="Person falling into a hole"
+                alt="Error illustration"
             >
         </div>
 
-        <div class="error-code">404</div>
+        <div class="error-code">
+            {{ error_code | default(404) }}
+        </div>
 
-        <h1>We couldn’t find that page</h1>
+        <h1>
+            {{ error_title | default("Page Not Found") }}
+        </h1>
 
         <p>
-            The page may have moved, or the address may be incorrect.
-            Let’s return to the available opportunities.
+            {{ error_message | default(
+                "The page may have moved, or the address may be incorrect."
+            ) }}
         </p>
 
         <a
