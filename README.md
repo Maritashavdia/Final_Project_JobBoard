@@ -1,62 +1,134 @@
 # JobBoard
 
-JobBoard is my final project for the Python and Flask course. It is a simple job vacancy website where visitors can view published jobs and read full information about each position.
+JobBoard is my final project for the Python and Flask course. It is a responsive web application where visitors can browse job vacancies, filter them by category and open a separate page with full information about each position.
 
-Users can create an account and log in to the website. After logging in, they can add new job vacancies and update their profile information and profile picture. Each vacancy contains a title, company, location, salary, category, short description, full description, author and publication date.
+Live website: [final-project-jobboard.onrender.com](https://final-project-jobboard.onrender.com/)
 
-A user can edit or delete only the vacancies they have published. Other users can view these vacancies, but they cannot change or delete them.
+## Main Features
 
-The project was created with Python, Flask, SQLite, SQLAlchemy, Flask-Login, Flask-WTF and Flask-Bcrypt. I used HTML, CSS and Bootstrap for the website design. Requests is used for the external API, Pillow is used for profile pictures and Pytest is used for automated tests.
+- User registration, login and logout
+- Secure password hashing with Flask-Bcrypt
+- User profile and profile-picture update
+- Creation, viewing, editing and deletion of job vacancies
+- Permission control: users can edit or delete only their own vacancies
+- Job filtering by category
+- Automatic sorting by publication date, with the newest jobs shown first
+- Separate pages for the jobs published by each user
+- Random motivational quote from an external API
+- Default quote when the external API is unavailable
+- Custom 403, 404 and 500 error handling
+- File logging for the required application events
+- Automated tests for the main routes and permission control
+- Responsive interface built with Jinja2, Bootstrap and custom CSS
 
-The About page receives a random motivational quote from an external API. If the API is unavailable, the website displays a default quote instead. The application also records successful and failed logins, added jobs, edited jobs, deleted jobs and API errors in a log file.
+## Technologies Used
 
-The project includes custom 404 and 500 error pages. It also includes three automated tests for the homepage, user login and permission control.
+- Python and Flask
+- SQLAlchemy and Flask-SQLAlchemy
+- Flask-Login
+- Flask-WTF
+- Flask-Bcrypt
+- SQLite for local development
+- PostgreSQL for production on Render
+- Requests for external API integration
+- Pillow for profile-image processing
+- Pytest for automated testing
+- HTML, Jinja2, CSS and Bootstrap
+- Gunicorn for production deployment
 
-## How to Run the Project
+## Database Models
 
-Create a virtual environment:
+The application contains two main models:
 
-```bash
+- `User` stores the user's name, email, hashed password and profile image.
+- `Job` stores the title, company, location, salary, category, descriptions, publication date and author.
+
+The models have a one-to-many relationship: one user can publish multiple jobs, while each job belongs to one user.
+
+## Permissions
+
+Creating a vacancy requires authentication. Before editing or deleting a vacancy, the application checks whether the current user is its author. Unauthorized users receive a `403 Forbidden` response and cannot modify another user's data.
+
+## External API
+
+The About page requests a random motivational quote from DummyJSON. The request has a timeout and error handling. If the request fails, the application displays a local default quote, so the page continues to work.
+
+## Logging
+
+Python's `logging` module writes the following required events to `jobboard.log`:
+
+- Successful login
+- Failed login attempt
+- Job creation
+- Job editing or deletion
+- External API request error
+
+Passwords and other sensitive information are not written to the log file.
+
+## Project Structure
+
+```text
+Final_Project_JobBoard/
+├── static/             # CSS, images and profile pictures
+├── templates/          # Jinja2 HTML templates
+├── tests/              # Automated tests
+├── app.py              # Routes and application logic
+├── config.py           # Application configuration
+├── forms.py            # WTForms classes and validation
+├── models.py           # Database models
+├── requirements.txt    # Python dependencies
+└── README.md
+```
+
+## How to Run the Project Locally
+
+1. Create a virtual environment:
+
+```powershell
 py -m venv .venv
 ```
 
-Activate it on Windows:
+2. Activate it on Windows PowerShell:
 
-```bash
+```powershell
 .venv\Scripts\Activate.ps1
 ```
 
-Install the required packages:
+3. Install the required packages:
 
-```bash
+```powershell
 python -m pip install -r requirements.txt
 ```
 
-Create a `.env` file and add:
+4. Create a `.env` file in the project directory:
 
 ```env
 SECRET_KEY=your-secret-key
 DATABASE_URL=sqlite:///jobboard.db
 ```
 
-Run the project:
+5. Start the application:
 
-```bash
+```powershell
 python app.py
 ```
 
-Open the website in the browser:
+6. Open `http://127.0.0.1:5000` in a browser.
 
-```text
-http://127.0.0.1:5000
-```
+## Automated Tests
 
-## Testing
+Run the tests from the project directory:
 
-Run the automated tests with:
-
-```bash
+```powershell
 pytest -q
 ```
 
-The website has a friendly and colorful design and works on desktop, tablet and mobile devices.
+The test suite checks:
+
+- The home page route
+- Successful user login
+- Permission protection preventing another user from editing or deleting a vacancy
+
+## Deployment
+
+The application is deployed on Render. The production version uses Gunicorn as the WSGI server and PostgreSQL as the database. Environment variables are configured on Render and are not stored directly in the repository.
