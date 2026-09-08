@@ -1,8 +1,8 @@
 :root {
     --dark-plum: #24113D;
-    --purple: #2F9E73;
-    --purple-dark: #6042D0;
-    --purple-light: #EEE9FF;
+    --green: #2F9E73;
+    --green-dark: #247A59;
+    --green-light: #E2F7EE;
     --coral: #FF6268;
     --coral-light: #FFE8E9;
     --yellow: #FFC84A;
@@ -45,13 +45,13 @@ main {
 }
 
 a {
-    color: var(--purple);
+    color: var(--green);
     text-decoration: none;
     transition: all 0.2s ease;
 }
 
 a:hover {
-    color: var(--purple-dark);
+    color: var(--green-dark);
 }
 
 h1,
@@ -109,27 +109,6 @@ p {
     color: var(--dark-plum);
 }
 
-.brand-icon {
-    width: 42px;
-    height: 42px;
-    border-radius: 14px;
-    background-color: var(--purple);
-    color: var(--white);
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.3rem;
-    font-weight: 900;
-    box-shadow: 0 7px 18px rgba(47, 158, 115, 0.25);
-}
-
-.brand-icon-small {
-    width: 36px;
-    height: 36px;
-    border-radius: 12px;
-    font-size: 1.05rem;
-}
-
 .navbar-nav {
     gap: 8px;
 }
@@ -142,8 +121,8 @@ p {
 }
 
 .nav-link:hover {
-    color: var(--purple);
-    background-color: var(--purple-light);
+    color: var(--green);
+    background-color: var(--green-light);
 }
 
 .nav-add-job {
@@ -174,30 +153,30 @@ p {
     transform: translateY(-2px);
 }
 
-.btn-purple {
-    background-color: var(--purple);
-    border-color: var(--purple);
+.btn-green {
+    background-color: var(--green);
+    border-color: var(--green);
     color: var(--white);
     box-shadow: 0 8px 18px rgba(47, 158, 115, 0.20);
 }
 
-.btn-purple:hover,
-.btn-purple:focus {
-    background-color: var(--purple-dark);
-    border-color: var(--purple-dark);
+.btn-green:hover,
+.btn-green:focus {
+    background-color: var(--green-dark);
+    border-color: var(--green-dark);
     color: var(--white);
 }
 
-.btn-outline-purple {
+.btn-outline-green {
     background-color: transparent;
-    border-color: var(--purple);
-    color: var(--purple);
+    border-color: var(--green);
+    color: var(--green);
 }
 
-.btn-outline-purple:hover,
-.btn-outline-purple:focus {
-    background-color: var(--purple);
-    border-color: var(--purple);
+.btn-outline-green:hover,
+.btn-outline-green:focus {
+    background-color: var(--green);
+    border-color: var(--green);
     color: var(--white);
 }
 
@@ -225,19 +204,6 @@ p {
     background-color: var(--coral);
     border-color: var(--coral);
     color: var(--white);
-}
-
-.btn-mint {
-    background-color: var(--mint);
-    border-color: var(--mint);
-    color: var(--dark-plum);
-}
-
-.btn-mint:hover,
-.btn-mint:focus {
-    background-color: #43B888;
-    border-color: #43B888;
-    color: var(--dark-plum);
 }
 
 .flash-container {
@@ -272,8 +238,8 @@ p {
 }
 
 .alert-info {
-    background-color: var(--purple-light);
-    border-color: var(--purple);
+    background-color: var(--green-light);
+    border-color: var(--green);
 }
 
 .page-header {
@@ -290,14 +256,6 @@ p {
     max-width: 650px;
     margin: 0 auto;
     font-size: 1.05rem;
-}
-
-.content-card {
-    background-color: var(--white);
-    border: 1px solid var(--light-border);
-    border-radius: var(--radius-medium);
-    padding: 30px;
-    box-shadow: var(--shadow-small);
 }
 
 .form-card {
@@ -345,7 +303,7 @@ textarea.form-control {
 .form-select:focus {
     color: var(--dark-plum);
     background-color: var(--white);
-    border-color: var(--purple);
+    border-color: var(--green);
     box-shadow: 0 0 0 4px rgba(47, 158, 115, 0.13);
 }
 
@@ -358,12 +316,12 @@ textarea.form-control {
 }
 
 .form-check-input:checked {
-    background-color: var(--purple);
-    border-color: var(--purple);
+    background-color: var(--green);
+    border-color: var(--green);
 }
 
 .form-check-input:focus {
-    border-color: var(--purple);
+    border-color: var(--green);
     box-shadow: 0 0 0 4px rgba(47, 158, 115, 0.13);
 }
 
@@ -398,8 +356,8 @@ textarea.form-control {
     gap: 8px;
     margin-bottom: 18px;
     padding: 8px 14px;
-    color: var(--purple);
-    background-color: var(--purple-light);
+    color: var(--green);
+    background-color: var(--green-light);
     border-radius: 999px;
     font-size: 0.9rem;
     font-weight: 800;
@@ -414,7 +372,7 @@ textarea.form-control {
 }
 
 .hero-title .highlight {
-    color: var(--purple);
+    color: var(--green);
     position: relative;
 }
 
@@ -443,7 +401,7 @@ textarea.form-control {
     min-height: 390px;
     position: relative;
     overflow: hidden;
-    background-color: var(--purple-light);
+    background-color: var(--green-light);
     border: 1px solid #DDD4FF;
     border-radius: 38px;
     box-shadow: var(--shadow-medium);
@@ -520,7 +478,7 @@ textarea.form-control {
     height: 13px;
     margin-bottom: 13px;
     border-radius: 999px;
-    background-color: var(--purple-light);
+    background-color: var(--green-light);
 }
 
 .illustration-line.short {
@@ -534,30 +492,6 @@ textarea.form-control {
 .illustration-line.coral {
     width: 42%;
     background-color: var(--coral-light);
-}
-
-.illustration-person {
-    width: 90px;
-    height: 125px;
-    position: absolute;
-    right: 30px;
-    bottom: 18px;
-}
-
-.person-head {
-    width: 48px;
-    height: 48px;
-    margin: auto;
-    background-color: #C97B52;
-    border-radius: 50%;
-}
-
-.person-body {
-    width: 90px;
-    height: 78px;
-    margin-top: -2px;
-    background-color: var(--purple);
-    border-radius: 45px 45px 20px 20px;
 }
 
 .decorative-note {
@@ -622,7 +556,7 @@ textarea.form-control {
     height: 50px;
     flex-shrink: 0;
     color: var(--white);
-    background-color: var(--purple);
+    background-color: var(--green);
     border-radius: 15px;
     display: flex;
     align-items: center;
@@ -740,7 +674,7 @@ textarea.form-control {
     width: 110px;
     height: 110px;
     object-fit: cover;
-    border: 5px solid var(--purple-light);
+    border: 5px solid var(--green-light);
     border-radius: 50%;
 }
 
@@ -769,9 +703,9 @@ textarea.form-control {
     font-weight: 900;
 }
 
-.feature-purple {
-    color: var(--purple);
-    background-color: var(--purple-light);
+.feature-green {
+    color: var(--green);
+    background-color: var(--green-light);
 }
 
 .feature-coral {
@@ -825,7 +759,7 @@ textarea.form-control {
     height: 150px;
     margin: 0 auto 25px;
     position: relative;
-    background-color: var(--purple-light);
+    background-color: var(--green-light);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -834,7 +768,7 @@ textarea.form-control {
 
 .empty-illustration span,
 .error-illustration span {
-    color: var(--purple);
+    color: var(--green);
     font-size: 3.5rem;
     font-weight: 900;
 }
@@ -1008,11 +942,6 @@ textarea.form-control {
         padding: 19px;
     }
 
-    .illustration-person {
-        transform: scale(0.78);
-        transform-origin: bottom right;
-    }
-
     .form-card,
     .profile-card,
     .job-details-card {
@@ -1074,7 +1003,7 @@ textarea.form-control {
 }
 
 .person-two .mini-body {
-    background-color: var(--purple);
+    background-color: var(--green);
 }
 
 .person-three .mini-head {
@@ -1086,7 +1015,7 @@ textarea.form-control {
 }
 
 .back-link {
-    color: var(--purple);
+    color: var(--green);
     font-weight: 800;
 }
 
@@ -1095,13 +1024,6 @@ textarea.form-control {
     display: flex;
     align-items: center;
     gap: 22px;
-}
-
-.company-icon-large {
-    width: 72px;
-    height: 72px;
-    border-radius: 20px;
-    font-size: 1.7rem;
 }
 
 .job-details-company {
@@ -1147,7 +1069,7 @@ textarea.form-control {
     min-height: 330px;
     position: relative;
     overflow: hidden;
-    background-color: var(--purple-light);
+    background-color: var(--green-light);
     border-radius: 30px;
 }
 
@@ -1231,7 +1153,7 @@ textarea.form-control {
 
 .about-person-two .about-body {
     height: 125px;
-    background-color: var(--purple);
+    background-color: var(--green);
 }
 
 .about-person-three .about-head {
@@ -1298,9 +1220,9 @@ textarea.form-control {
     font-weight: 900;
 }
 
-.form-icon-purple {
+.form-icon-green {
     color: var(--white);
-    background-color: var(--purple);
+    background-color: var(--green);
 }
 
 .form-icon-coral {
@@ -1345,7 +1267,7 @@ textarea.form-control {
 .profile-label {
     display: inline-block;
     margin-bottom: 5px;
-    color: var(--purple);
+    color: var(--green);
     font-size: 0.85rem;
     font-weight: 900;
     text-transform: uppercase;
@@ -1408,7 +1330,7 @@ textarea.form-control {
     width: 100%;
     height: 7px;
     margin-bottom: 9px;
-    background-color: var(--purple);
+    background-color: var(--green);
     border-radius: 999px;
     display: block;
 }
@@ -1459,7 +1381,7 @@ textarea.form-control {
 }
 
 .author-link {
-    color: var(--purple);
+    color: var(--green);
     font-weight: 900;
 }
 
@@ -1484,7 +1406,7 @@ textarea.form-control {
     width: 105px;
     height: 105px;
     object-fit: cover;
-    border: 5px solid var(--purple-light);
+    border: 5px solid var(--green-light);
     border-radius: 50%;
 }
 
@@ -1650,4 +1572,15 @@ textarea.form-control {
         min-height: auto;
         justify-content: center;
     }
+}
+
+.error-fall-illustration {
+    width: min(100%, 420px);
+    margin: 0 auto 28px;
+}
+
+.error-fall-illustration svg {
+    display: block;
+    width: 100%;
+    height: auto;
 }

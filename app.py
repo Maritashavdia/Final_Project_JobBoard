@@ -129,6 +129,14 @@ def index():
         ""
     ).strip()
 
+    selected_sort = request.args.get(
+        "sort",
+        "newest"
+    ).strip()
+
+    if selected_sort not in {"newest", "oldest"}:
+        selected_sort = "newest"
+
     jobs_query = Job.query
 
     if selected_category:
@@ -136,9 +144,16 @@ def index():
             category=selected_category
         )
 
-    jobs = jobs_query.order_by(
-        Job.date_posted.desc()
-    ).all()
+    if selected_sort == "oldest":
+        jobs_query = jobs_query.order_by(
+            Job.date_posted.asc()
+        )
+    else:
+        jobs_query = jobs_query.order_by(
+            Job.date_posted.desc()
+        )
+
+    jobs = jobs_query.all()
 
     categories = [
         category
@@ -156,6 +171,7 @@ def index():
         jobs=jobs,
         categories=categories,
         selected_category=selected_category,
+        selected_sort=selected_sort,
         title="Jobs"
     )
 

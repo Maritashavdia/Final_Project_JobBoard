@@ -25,7 +25,7 @@
                     <div class="hero-actions">
                         <a
                             href="#available-jobs"
-                            class="btn btn-purple"
+                            class="btn btn-green"
                         >
                             Explore Jobs
                         </a>
@@ -33,14 +33,14 @@
                         {% if current_user.is_authenticated %}
                             <a
                                 href="{{ url_for('create_job') }}"
-                                class="btn btn-outline-purple"
+                                class="btn btn-outline-green"
                             >
                                 Add a Job
                             </a>
                         {% else %}
                             <a
                                 href="{{ url_for('register') }}"
-                                class="btn btn-outline-purple"
+                                class="btn btn-outline-green"
                             >
                                 Join JobBoard
                             </a>
@@ -237,19 +237,30 @@
                             <div class="job-card-footer">
                                 <div class="job-author">
                                     By
+
                                     <a
-                                        href="{{ url_for('user_jobs', name=job.author.name) }}"
+                                        href="{{ url_for(
+                                            'user_jobs',
+                                            name=job.author.name
+                                        ) }}"
                                         class="author-link"
                                     >
                                         {{ job.author.name }}
                                     </a>
+
                                     <br>
-                                    {{ job.date_posted.strftime("%d %b %Y") }}
+
+                                    {{ job.date_posted.strftime(
+                                        "%d %b %Y"
+                                    ) }}
                                 </div>
 
                                 <a
-                                    href="{{ url_for('job_detail', job_id=job.id) }}"
-                                    class="btn btn-outline-purple"
+                                    href="{{ url_for(
+                                        'job_detail',
+                                        job_id=job.id
+                                    ) }}"
+                                    class="btn btn-outline-green"
                                 >
                                     Read More
                                 </a>
@@ -274,7 +285,7 @@
 
                     <a
                         href="{{ url_for('index') }}#available-jobs"
-                        class="btn btn-purple"
+                        class="btn btn-green"
                     >
                         View All Jobs
                     </a>
@@ -289,14 +300,14 @@
                     {% if current_user.is_authenticated %}
                         <a
                             href="{{ url_for('create_job') }}"
-                            class="btn btn-purple"
+                            class="btn btn-green"
                         >
                             Add the First Job
                         </a>
                     {% else %}
                         <a
                             href="{{ url_for('login') }}"
-                            class="btn btn-purple"
+                            class="btn btn-green"
                         >
                             Log In to Add a Job
                         </a>
