@@ -43,16 +43,24 @@ login_manager.login_message = "Please log in to access this page."
 login_manager.login_message_category = "warning"
 
 
-logging.basicConfig(
-    level=logging.INFO,
-    format="%(asctime)s | %(levelname)s | %(message)s",
-    handlers=[
-        logging.FileHandler("jobboard.log"),
-        logging.StreamHandler()
-    ]
+logger = logging.getLogger("jobboard")
+logger.setLevel(logging.INFO)
+logger.propagate = False
+
+file_handler = logging.FileHandler(
+    "jobboard.log",
+    encoding="utf-8"
+)
+file_handler.setLevel(logging.INFO)
+file_handler.setFormatter(
+    logging.Formatter(
+        "%(asctime)s | %(levelname)s | %(message)s",
+        datefmt="%Y-%m-%d %H:%M:%S"
+    )
 )
 
-logger = logging.getLogger(__name__)
+logger.handlers.clear()
+logger.addHandler(file_handler)
 
 
 @login_manager.user_loader
@@ -114,7 +122,7 @@ def get_external_quote():
 
     except requests.RequestException as error:
         logger.error(
-            "External API request failed: %s",
+            "API მოთხოვნის შეცდომა | მიზეზი: %s",
             error
         )
 
@@ -249,7 +257,7 @@ def login():
             )
 
             logger.info(
-                "Successful login for user: %s",
+                "წარმატებული ავტორიზაცია | მომხმარებელი: %s",
                 user.email
             )
 
@@ -261,7 +269,7 @@ def login():
             return redirect(url_for("index"))
 
         logger.warning(
-            "Failed login attempt for email: %s",
+            "წარუმატებელი ავტორიზაცია | ელფოსტა: %s",
             email
         )
 
@@ -371,7 +379,7 @@ def create_job():
         db.session.commit()
 
         logger.info(
-            "Job added: id=%s, user=%s",
+            "ვაკანსია დამატებულია | ID: %s | მომხმარებელი: %s",
             job.id,
             current_user.email
         )
@@ -470,7 +478,7 @@ def edit_job(job_id):
         db.session.commit()
 
         logger.info(
-            "Job edited: id=%s, user=%s",
+            "ვაკანსია რედაქტირებულია | ID: %s | მომხმარებელი: %s",
             job.id,
             current_user.email
         )
@@ -533,7 +541,7 @@ def delete_job(job_id):
     db.session.commit()
 
     logger.info(
-        "Job deleted: id=%s, user=%s",
+        "ვაკანსია წაშლილია | ID: %s | მომხმარებელი: %s",
         deleted_job_id,
         current_user.email
     )
@@ -582,6 +590,10 @@ def internal_server_error(error):
         "500.html",
         title="Server Error"
     ), 500
+
+
+with app.app_context():
+    db.create_all()
 
 
 with app.app_context():
