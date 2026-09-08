@@ -61,6 +61,17 @@ file_handler.setFormatter(
 
 logger.handlers.clear()
 logger.addHandler(file_handler)
+console_handler = logging.StreamHandler()
+console_handler.setLevel(logging.INFO)
+console_handler.setFormatter(
+    logging.Formatter(
+        "%(asctime)s | %(levelname)s | %(message)s",
+        datefmt="%Y-%m-%d %H:%M:%S"
+    )
+)
+
+logger.addHandler(console_handler)
+
 
 
 @login_manager.user_loader
