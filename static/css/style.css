@@ -1584,3 +1584,19 @@ textarea.form-control {
     width: 100%;
     height: auto;
 }
+
+.error-alert-icon {
+    width: 82px;
+    height: 82px;
+    border: 5px solid var(--coral);
+    border-radius: 50%;
+    color: var(--coral);
+    background-color: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Arial, sans-serif;
+    font-size: 3.5rem;
+    font-weight: 900;
+    line-height: 1;
+}
